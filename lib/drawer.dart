@@ -24,13 +24,13 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
 
     return Column(
       children: [
-        // Padding(
-        //   padding: const EdgeInsets.all(20.0),
-        //   child: CircleAvatar(
-        //     radius: sizeData.height * .1,
-        //     foregroundImage: const AssetImage("assets/profile.JPG"),
-        //   ),
-        // ),
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: CircleAvatar(
+            radius: sizeData.height * .1,
+            foregroundImage: const AssetImage("assets/profile.JPG"),
+          ),
+        ),
         Text(
           "Ashish Kumar",
           style: Theme.of(context).textTheme.headline5?.copyWith(

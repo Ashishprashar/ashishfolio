@@ -76,7 +76,7 @@ class _HomeState extends State<Home> {
     return Stack(
       children: [
         Image.asset(
-          "assets/cover.JPG",
+          "assets/cover.jpg",
           width: widget.width,
           height: widget.height,
           fit: BoxFit.cover,
