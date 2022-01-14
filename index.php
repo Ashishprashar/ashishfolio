@@ -1,1 +1,1 @@
-echo '<?php include_once("web\index.html"); ?>'
+echo '<?php include_once("web/index.html"); ?>'
