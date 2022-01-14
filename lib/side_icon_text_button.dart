@@ -4,13 +4,13 @@ class SideIconTextButton extends StatefulWidget {
   String title;
   IconData icon;
   bool isSelected;
-  double height;
+  // double height;
   Function change;
   SideIconTextButton(
       {Key? key,
       required this.icon,
       required this.title,
-      required this.height,
+      // required this.height,
       required this.change,
       this.isSelected = false})
       : super(key: key);
@@ -29,7 +29,7 @@ class _SideIconTextButtonState extends State<SideIconTextButton> {
         widget.change();
       },
       child: Container(
-        height: widget.height,
+        // height: widget.height,
         margin: const EdgeInsets.symmetric(horizontal: 34),
         child: MouseRegion(
           onEnter: (p) {

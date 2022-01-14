@@ -24,13 +24,13 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
 
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: CircleAvatar(
-            radius: sizeData.height * .1,
-            foregroundImage: const AssetImage("assets/profile.JPG"),
-          ),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.all(20.0),
+        //   child: CircleAvatar(
+        //     radius: sizeData.height * .1,
+        //     foregroundImage: const AssetImage("assets/profile.JPG"),
+        //   ),
+        // ),
         Text(
           "Ashish Kumar",
           style: Theme.of(context).textTheme.headline5?.copyWith(
@@ -75,78 +75,86 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                 ),
               ],
             )),
-        SideIconTextButton(
-          icon: Icons.home_outlined,
-          title: "Home",
-          height: sizeData.height * .5 / 7,
-          change: () {
-            setState(() {
-              currentScreen = 0;
-            });
-            widget.change();
-          },
-          isSelected: currentScreen == 0,
-        ),
-        SideIconTextButton(
-          icon: Icons.person_outline_outlined,
-          title: "About",
-          height: sizeData.height * .5 / 7,
-          change: () {
-            setState(() {
-              currentScreen = 1;
-            });
-            widget.change();
-          },
-          isSelected: currentScreen == 1,
-        ),
-        SideIconTextButton(
-          icon: Icons.file_present_rounded,
-          title: "Resume",
-          height: sizeData.height * .5 / 7,
-          change: () {
-            setState(() {
-              currentScreen = 2;
-            });
-            widget.change();
-          },
-          isSelected: currentScreen == 2,
-        ),
-        SideIconTextButton(
-          icon: Icons.web_sharp,
-          title: "Portfolio",
-          height: sizeData.height * .5 / 7,
-          change: () {
-            setState(() {
-              currentScreen = 3;
-            });
-            widget.change();
-          },
-          isSelected: currentScreen == 3,
-        ),
-        SideIconTextButton(
-          icon: Icons.home_repair_service_rounded,
-          title: "Services",
-          height: sizeData.height * .5 / 7,
-          change: () {
-            setState(() {
-              currentScreen = 4;
-            });
-            widget.change();
-          },
-          isSelected: currentScreen == 4,
-        ),
-        SideIconTextButton(
-          icon: Icons.email_outlined,
-          title: "Contact",
-          height: sizeData.height * .5 / 7,
-          change: () {
-            setState(() {
-              currentScreen = 5;
-            });
-            widget.change();
-          },
-          isSelected: currentScreen == 5,
-        ),
+        SizedBox(
+          height: sizeData.height * .5,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SideIconTextButton(
+                icon: Icons.home_outlined,
+                title: "Home",
+                // height: sizeData.height * .5 / 7,
+                change: () {
+                  setState(() {
+                    currentScreen = 0;
+                  });
+                  widget.change();
+                },
+                isSelected: currentScreen == 0,
+              ),
+              SideIconTextButton(
+                icon: Icons.person_outline_outlined,
+                title: "About",
+                // height: sizeData.height * .5 / 7,
+                change: () {
+                  setState(() {
+                    currentScreen = 1;
+                  });
+                  widget.change();
+                },
+                isSelected: currentScreen == 1,
+              ),
+              SideIconTextButton(
+                icon: Icons.file_present_rounded,
+                title: "Resume",
+                // height: sizeData.height * .5 / 7,
+                change: () {
+                  setState(() {
+                    currentScreen = 2;
+                  });
+                  widget.change();
+                },
+                isSelected: currentScreen == 2,
+              ),
+              SideIconTextButton(
+                icon: Icons.web_sharp,
+                title: "Portfolio",
+                // height: sizeData.height * .5 / 7,
+                change: () {
+                  setState(() {
+                    currentScreen = 3;
+                  });
+                  widget.change();
+                },
+                isSelected: currentScreen == 3,
+              ),
+              SideIconTextButton(
+                icon: Icons.home_repair_service_rounded,
+                title: "Services",
+                // height: sizeData.height * .5 / 7,
+                change: () {
+                  setState(() {
+                    currentScreen = 4;
+                  });
+                  widget.change();
+                },
+                isSelected: currentScreen == 4,
+              ),
+              SideIconTextButton(
+                icon: Icons.email_outlined,
+                title: "Contact",
+                // height: sizeData.height * .5 / 7,
+                change: () {
+                  setState(() {
+                    currentScreen = 5;
+                  });
+                  widget.change();
+                },
+                isSelected: currentScreen == 5,
+              ),
+            ],
+          ),
+        )
       ],
     );
   }

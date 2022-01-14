@@ -1,7 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:portfolio/about.dart';
 import 'package:portfolio/drawer.dart';
+import 'package:portfolio/email.dart';
+import 'package:portfolio/home.dart';
+import 'package:portfolio/portfolio.dart';
+import 'package:portfolio/resume.dart';
+import 'package:portfolio/services.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -26,17 +32,17 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   perform() {
-    if (currentScreen == 0) {
-      Timer.periodic(const Duration(milliseconds: 500), (timer) {
-        setState(() {
-          if (textEditingController.text.length < 8) {
-            textEditingController.text += "11";
-          } else {
-            textEditingController.text = "0";
-          }
-        });
-      });
-    }
+    // if (currentScreen == 0) {
+    //   Timer.periodic(const Duration(milliseconds: 500), (timer) {
+    //     setState(() {
+    //       if (textEditingController.text.length < 8) {
+    //         textEditingController.text += "11";
+    //       } else {
+    //         textEditingController.text = "0";
+    //       }
+    //     });
+    //   });
+    // }
   }
 
   listener() {
@@ -81,13 +87,6 @@ class _MainScreenState extends State<MainScreen> {
         currentScreen = 4;
       });
     }
-    // if (_controller.offset > screenSize * 1 &&
-    //     _controller.offset < screenSize * 2 &&
-    //     !_controller.position.outOfRange) {
-    //   setState(() {
-    //     currentScreen = 5;
-    //   });
-    // }
   }
 
   changeValue() {
@@ -126,76 +125,65 @@ class _MainScreenState extends State<MainScreen> {
               child: ListView(
                 controller: _controller,
                 children: [
-                  Container(
-                    height: sizeData.height,
+                  // Container(
+                  //   height: sizeData.height,
+                  //   width: (sizeData.width > 900)
+                  //       ? sizeData.width - 300
+                  //       : sizeData.width,
+                  //   color: Colors.yellow,
+                  //   child: Center(
+                  //     child: SizedBox(
+                  //       width: 200,
+                  //       child: TextField(
+                  //         decoration:
+                  //             const InputDecoration(border: InputBorder.none),
+                  //         readOnly: true,
+                  //         controller: textEditingController,
+                  //         style: const TextStyle(
+                  //             decoration: TextDecoration.underline),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+
+                  Home(
                     width: (sizeData.width > 900)
                         ? sizeData.width - 300
                         : sizeData.width,
-                    color: Colors.yellow,
-                    child: Center(
-                      child: SizedBox(
-                        width: 200,
-                        child: TextField(
-                          decoration:
-                              const InputDecoration(border: InputBorder.none),
-                          readOnly: true,
-                          controller: textEditingController,
-                          style: const TextStyle(
-                              decoration: TextDecoration.underline),
-                        ),
-                      ),
-                    ),
+                    height: sizeData.height,
                   ),
                   Container(
-                    height: sizeData.height,
+                      height: sizeData.height,
+                      width: (sizeData.width > 900)
+                          ? sizeData.width - 300
+                          : sizeData.width,
+                      padding: const EdgeInsets.all(20),
+                      child: const About()),
+
+                  Resume(
                     width: (sizeData.width > 900)
                         ? sizeData.width - 300
                         : sizeData.width,
-                    color: Colors.teal,
-                    child: const Center(
-                      child: Text("Screen2"),
-                    ),
+                    height: sizeData.height,
                   ),
                   Container(
-                    height: sizeData.height,
-                    width: (sizeData.width > 900)
-                        ? sizeData.width - 300
-                        : sizeData.width,
-                    color: Colors.blue,
-                    child: const Center(
-                      child: Text("Screen3"),
-                    ),
-                  ),
+                      height: sizeData.height,
+                      width: (sizeData.width > 900)
+                          ? sizeData.width - 300
+                          : sizeData.width,
+                      child: const Portfolio()),
                   Container(
-                    height: sizeData.height,
-                    width: (sizeData.width > 900)
-                        ? sizeData.width - 300
-                        : sizeData.width,
-                    color: Colors.brown,
-                    child: const Center(
-                      child: Text("Screen4"),
-                    ),
-                  ),
+                      height: sizeData.height,
+                      width: (sizeData.width > 900)
+                          ? sizeData.width - 300
+                          : sizeData.width,
+                      child: const Services()),
                   Container(
-                    height: sizeData.height,
-                    width: (sizeData.width > 900)
-                        ? sizeData.width - 300
-                        : sizeData.width,
-                    color: Colors.red,
-                    child: const Center(
-                      child: Text("Screen5"),
-                    ),
-                  ),
-                  Container(
-                    height: sizeData.height,
-                    width: (sizeData.width > 900)
-                        ? sizeData.width - 300
-                        : sizeData.width,
-                    color: Colors.red,
-                    child: const Center(
-                      child: Text("Screen6"),
-                    ),
-                  ),
+                      height: sizeData.height,
+                      width: (sizeData.width > 900)
+                          ? sizeData.width - 300
+                          : sizeData.width,
+                      child: const Contact()),
                 ],
               ),
             )
