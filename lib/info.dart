@@ -20,6 +20,7 @@ class InfoIconWidget extends StatelessWidget {
           ),
           Text(
             title + ":  ",
+            overflow: TextOverflow.ellipsis,
             style: Theme.of(context)
                 .textTheme
                 .bodyText2

@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/info.dart';
 
 class About extends StatelessWidget {
-  const About({Key? key}) : super(key: key);
+  bool viewChanged;
+  About({Key? key, required this.viewChanged}) : super(key: key);
+  buildright() {
+    return [
+      InfoIconWidget(data: "21", title: "Age"),
+      InfoIconWidget(data: "B.E(Cse Final year)", title: "Degree"),
+      InfoIconWidget(data: "ak2917065@gmail.com", title: "Email"),
+      InfoIconWidget(data: "Available", title: "Freelance"),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +29,7 @@ class About extends StatelessWidget {
         ),
         const SizedBox(width: 70, child: Divider()),
         Text(
-          "Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. \nSit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.",
+          "I build Mobile Applications with Flutter.",
           style: Theme.of(context).textTheme.caption?.copyWith(fontSize: 18),
         ),
         Container(
@@ -31,7 +40,7 @@ class About extends StatelessWidget {
             children: [
               Image(
                 image: const AssetImage("assets/profile.JPG"),
-                width: sizeData.width * .25,
+                width: viewChanged ? sizeData.width * .25 : sizeData.width * .5,
                 loadingBuilder: (context, child, loadingProgress) {
                   if (loadingProgress == null) return child;
                   return Center(
@@ -57,7 +66,7 @@ class About extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
-                        height: sizeData.height * .4,
+                        height: sizeData.height * .5,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -65,30 +74,35 @@ class About extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                InfoIconWidget(
-                                    data: "30 June 2001", title: "BirthDate"),
-                                InfoIconWidget(data: ".com", title: "Website"),
-                                InfoIconWidget(
-                                    data: "+91 9653662159", title: "Phone"),
-                                InfoIconWidget(
-                                    data: "Banglore, India", title: "City"),
-                              ],
+                                    InfoIconWidget(
+                                        data: "30 June 2001",
+                                        title: "BirthDate"),
+                                    InfoIconWidget(
+                                        data: ".com", title: "Website"),
+                                    InfoIconWidget(
+                                        data: "+91 9653662159", title: "Phone"),
+                                    InfoIconWidget(
+                                        data: "Banglore, India", title: "City"),
+                                  ] +
+                                  (viewChanged ? [] : buildright()),
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                InfoIconWidget(data: "21", title: "Age"),
-                                InfoIconWidget(
-                                    data: "B.E(Cse Final year)",
-                                    title: "Degree"),
-                                InfoIconWidget(
-                                    data: "ak2917065@gmail.com",
-                                    title: "Email"),
-                                InfoIconWidget(
-                                    data: "Available", title: "Freelance"),
-                              ],
-                            ),
+                            if (viewChanged)
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  InfoIconWidget(data: "21", title: "Age"),
+                                  InfoIconWidget(
+                                      data: "B.E(Cse Final year)",
+                                      title: "Degree"),
+                                  InfoIconWidget(
+                                      data: "ak2917065@gmail.com",
+                                      title: "Email"),
+                                  InfoIconWidget(
+                                      data: "Available", title: "Freelance"),
+                                ],
+                              ),
                           ],
                         ),
                       )

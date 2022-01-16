@@ -158,7 +158,7 @@ class _MainScreenState extends State<MainScreen> {
                           ? sizeData.width - 300
                           : sizeData.width,
                       padding: const EdgeInsets.all(20),
-                      child: const About()),
+                      child: About(viewChanged: sizeData.width > 900)),
 
                   Resume(
                     width: (sizeData.width > 900)
