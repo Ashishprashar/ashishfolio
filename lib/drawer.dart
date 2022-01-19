@@ -89,6 +89,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     currentScreen = 0;
                   });
                   widget.change();
+                  setState(() {
+                    currentScreen = 0;
+                  });
                 },
                 isSelected: currentScreen == 0,
               ),
@@ -101,6 +104,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     currentScreen = 1;
                   });
                   widget.change();
+                  setState(() {
+                    currentScreen = 1;
+                  });
                 },
                 isSelected: currentScreen == 1,
               ),
@@ -113,6 +119,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     currentScreen = 2;
                   });
                   widget.change();
+                  setState(() {
+                    currentScreen = 2;
+                  });
                 },
                 isSelected: currentScreen == 2,
               ),
@@ -125,20 +134,11 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     currentScreen = 3;
                   });
                   widget.change();
+                  setState(() {
+                    currentScreen = 3;
+                  });
                 },
                 isSelected: currentScreen == 3,
-              ),
-              SideIconTextButton(
-                icon: Icons.home_repair_service_rounded,
-                title: "Services",
-                // height: sizeData.height * .5 / 7,
-                change: () {
-                  setState(() {
-                    currentScreen = 4;
-                  });
-                  widget.change();
-                },
-                isSelected: currentScreen == 4,
               ),
               SideIconTextButton(
                 icon: Icons.email_outlined,
@@ -146,12 +146,27 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                 // height: sizeData.height * .5 / 7,
                 change: () {
                   setState(() {
-                    currentScreen = 5;
+                    currentScreen = 4;
                   });
                   widget.change();
+                  setState(() {
+                    currentScreen = 4;
+                  });
                 },
-                isSelected: currentScreen == 5,
+                isSelected: currentScreen == 4,
               ),
+              // SideIconTextButton(
+              //   icon: Icons.home_repair_service_rounded,
+              //   title: "Services",
+              //   // height: sizeData.height * .5 / 7,
+              //   change: () {
+              //     setState(() {
+              //       currentScreen = 4;
+              //     });
+              //     widget.change();
+              //   },
+              //   isSelected: currentScreen == 4,
+              // ),
             ],
           ),
         )

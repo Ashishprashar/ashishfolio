@@ -49,50 +49,47 @@ class _MainScreenState extends State<MainScreen> {
     if (_controller.offset >= _controller.position.maxScrollExtent &&
         !_controller.position.outOfRange) {
       setState(() {
-        currentScreen = 5;
+        currentScreen = 4;
       });
     }
     // print(_controller.offset);
-    if (_controller.offset <= _controller.position.minScrollExtent &&
+    else if (_controller.offset <= _controller.position.minScrollExtent &&
         !_controller.position.outOfRange) {
       setState(() {
         currentScreen = 0;
       });
-    }
-    if (_controller.offset > screenSize * 0 &&
-        _controller.offset < screenSize * 1 &&
+    } else if (_controller.offset > screenSize * 1 &&
+        _controller.offset < screenSize * 2 &&
         !_controller.position.outOfRange) {
       setState(() {
         currentScreen = 1;
       });
-    }
-    if (_controller.offset > screenSize * 1 &&
-        _controller.offset < screenSize * 2 &&
+    } else if (_controller.offset > screenSize * 2 &&
+        _controller.offset < screenSize * 3 &&
         !_controller.position.outOfRange) {
       setState(() {
         currentScreen = 2;
       });
-    }
-    if (_controller.offset > screenSize * 2 &&
-        _controller.offset < screenSize * 3 &&
+    } else if (_controller.offset > screenSize * 3 &&
+        _controller.offset < screenSize * 4 &&
         !_controller.position.outOfRange) {
       setState(() {
         currentScreen = 3;
       });
     }
-    if (_controller.offset > screenSize * 4 &&
-        _controller.offset < screenSize * 5 &&
-        !_controller.position.outOfRange) {
-      setState(() {
-        currentScreen = 4;
-      });
-    }
+    // if (_controller.offset > screenSize * 4 &&
+    //     _controller.position.maxScrollExtent < screenSize * 5 &&
+    //     !_controller.position.outOfRange) {
+    //   setState(() {
+    //     currentScreen = 4;
+    //   });
+    // }
   }
 
   changeValue() {
-    setState(() {});
     _controller.animateTo(screenSize * (currentScreen),
         curve: Curves.linear, duration: const Duration(milliseconds: 500));
+    setState(() {});
   }
 
   @override
@@ -166,24 +163,26 @@ class _MainScreenState extends State<MainScreen> {
                         : sizeData.width,
                     height: sizeData.height,
                   ),
-                  Container(
-                      height: sizeData.height,
-                      width: (sizeData.width > 900)
-                          ? sizeData.width - 300
-                          : sizeData.width,
-                      child: const Portfolio()),
-                  Container(
-                      height: sizeData.height,
-                      width: (sizeData.width > 900)
-                          ? sizeData.width - 300
-                          : sizeData.width,
-                      child: const Services()),
-                  Container(
-                      height: sizeData.height,
-                      width: (sizeData.width > 900)
-                          ? sizeData.width - 300
-                          : sizeData.width,
-                      child: const Contact()),
+                  Portfolio(
+                    width: (sizeData.width > 900)
+                        ? sizeData.width - 300
+                        : sizeData.width,
+                    height: sizeData.height,
+                  ),
+
+                  Contact(
+                    width: (sizeData.width > 900)
+                        ? sizeData.width - 300
+                        : sizeData.width,
+                    height: sizeData.height,
+                  ),
+
+                  // Container(
+                  //     height: sizeData.height,
+                  //     width: (sizeData.width > 900)
+                  //         ? sizeData.width - 300
+                  //         : sizeData.width,
+                  //     child: const Services()),
                 ],
               ),
             )
