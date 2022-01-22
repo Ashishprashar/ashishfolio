@@ -62,49 +62,25 @@ class _ProjectItemState extends State<ProjectItem> {
           timer.cancel();
         },
         child: Center(
-          child: Container(
-            height: widget.height * .75 - (mouseOn ? 30 : 0),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 100),
             width: 300 - (mouseOn ? 30 : 0),
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(20)),
             margin: EdgeInsets.all((mouseOn ? 50 : 20)),
-            child: Stack(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                  width: 300 - (mouseOn ? 30 : 0),
-                  height: widget.height * .75 - (mouseOn ? 30 : 0),
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      AnimatedContainer(
-                          duration: const Duration(milliseconds: 100),
-                          height: widget.height * .6,
-                          padding: EdgeInsets.all(mouseOn ? 0 : 30),
-                          child: Image.asset(
-                            "assets/${widget.images[index]}.jpg",
-                            fit: BoxFit.fill,
-                          )),
-                      Text(
-                        widget.title,
-                        style: Theme.of(context).textTheme.headline6,
-                      )
-                    ],
-                  ),
+                Image.asset(
+                  "assets/${widget.images[index]}.jpg",
+                  fit: BoxFit.fill,
+                  height: widget.height * .5,
                 ),
-                // if (mouseOn)
-                //   Container(
-                //     height: widget.height * .6,
-                //     width: 300,
-                //     alignment: Alignment.bottomCenter,
-                //     padding: EdgeInsets.all(mouseOn ? 0 : 30),
-                //     decoration: BoxDecoration(
-                //         color:
-                //             Theme.of(context).primaryColorLight.withOpacity(.3)),
-                //     child: const Text("Tap here "),
-                //   )
+                Text(
+                  widget.title,
+                  style: Theme.of(context).textTheme.headline6,
+                )
               ],
             ),
           ),

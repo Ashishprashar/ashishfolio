@@ -37,55 +37,53 @@ class _FeedBackState extends State<FeedBack> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        children: [
-          buildTextField("Name", name),
-          buildTextField("Email", email),
-          buildTextField("Message", message),
-          if (error != "")
-            Text(
-              error,
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle2
-                  ?.copyWith(color: Theme.of(context).errorColor),
-            ),
-          Container(
-              margin: const EdgeInsets.symmetric(vertical: 10),
-              child: ElevatedButton(
-                  onPressed: () async {
+    return Column(
+      children: [
+        buildTextField("Name", name),
+        buildTextField("Email", email),
+        buildTextField("Message", message),
+        if (error != "")
+          Text(
+            error,
+            style: Theme.of(context)
+                .textTheme
+                .subtitle2
+                ?.copyWith(color: Theme.of(context).errorColor),
+          ),
+        Container(
+            margin: const EdgeInsets.symmetric(vertical: 10),
+            child: ElevatedButton(
+                onPressed: () async {
+                  setState(() {
+                    isLoading = true;
+                  });
+                  if (message.text.isEmpty &&
+                      email.text.isEmpty &&
+                      name.text.isEmpty) {
                     setState(() {
-                      isLoading = true;
+                      error = "All fields are Reqiured";
                     });
-                    if (message.text.isEmpty &&
-                        email.text.isEmpty &&
-                        name.text.isEmpty) {
-                      setState(() {
-                        error = "All fields are Reqiured";
-                      });
-                      return;
-                    }
-                    const url =
-                        "https://flutter-project-bb713-default-rtdb.firebaseio.com/message.json";
-                    await http.post(Uri.parse(url),
-                        body: json.encode({
-                          "name": name.text,
-                          "email": email.text,
-                          "message": message.text
-                        }));
-                    setState(() {
-                      isLoading = false;
-                    });
-                    setState(() {
-                      error = "Your message has been sent ";
-                    });
-                  },
-                  child: isLoading
-                      ? const CircularProgressIndicator()
-                      : const Text("Send Message")))
-        ],
-      ),
+                    return;
+                  }
+                  const url =
+                      "https://flutter-project-bb713-default-rtdb.firebaseio.com/message.json";
+                  await http.post(Uri.parse(url),
+                      body: json.encode({
+                        "name": name.text,
+                        "email": email.text,
+                        "message": message.text
+                      }));
+                  setState(() {
+                    isLoading = false;
+                  });
+                  setState(() {
+                    error = "Your message has been sent ";
+                  });
+                },
+                child: isLoading
+                    ? const CircularProgressIndicator()
+                    : const Text("Send Message")))
+      ],
     );
   }
 }

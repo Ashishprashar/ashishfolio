@@ -19,14 +19,17 @@ class MainScreen extends StatefulWidget {
 int currentScreen = 0;
 
 class _MainScreenState extends State<MainScreen> {
-  TextEditingController textEditingController = TextEditingController();
+  // TextEditingController textEditingController = TextEditingController();
+  PageController pageController = PageController();
 
-  late ScrollController _controller;
+  // late ScrollController pageController;
   double screenSize = 0.0;
   @override
   initState() {
-    _controller = ScrollController();
-    _controller.addListener(listener);
+    pageController.addListener(listener);
+    // pageController = ScrollController();
+    // pageController.addListener(listener);
+
     perform();
     super.initState();
   }
@@ -46,40 +49,40 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   listener() {
-    if (_controller.offset >= _controller.position.maxScrollExtent &&
-        !_controller.position.outOfRange) {
+    if (pageController.offset >= pageController.position.maxScrollExtent &&
+        !pageController.position.outOfRange) {
       setState(() {
         currentScreen = 4;
       });
     }
-    // print(_controller.offset);
-    else if (_controller.offset <= _controller.position.minScrollExtent &&
-        !_controller.position.outOfRange) {
+    // print(pageController.offset);
+    else if (pageController.offset <= pageController.position.minScrollExtent &&
+        !pageController.position.outOfRange) {
       setState(() {
         currentScreen = 0;
       });
-    } else if (_controller.offset > screenSize * 1 &&
-        _controller.offset < screenSize * 2 &&
-        !_controller.position.outOfRange) {
+    } else if (pageController.offset > screenSize * 1 &&
+        pageController.offset < screenSize * 2 &&
+        !pageController.position.outOfRange) {
       setState(() {
         currentScreen = 1;
       });
-    } else if (_controller.offset > screenSize * 2 &&
-        _controller.offset < screenSize * 3 &&
-        !_controller.position.outOfRange) {
+    } else if (pageController.offset > screenSize * 2 &&
+        pageController.offset < screenSize * 3 &&
+        !pageController.position.outOfRange) {
       setState(() {
         currentScreen = 2;
       });
-    } else if (_controller.offset > screenSize * 3 &&
-        _controller.offset < screenSize * 4 &&
-        !_controller.position.outOfRange) {
+    } else if (pageController.offset > screenSize * 3 &&
+        pageController.offset < screenSize * 4 &&
+        !pageController.position.outOfRange) {
       setState(() {
         currentScreen = 3;
       });
     }
-    // if (_controller.offset > screenSize * 4 &&
-    //     _controller.position.maxScrollExtent < screenSize * 5 &&
-    //     !_controller.position.outOfRange) {
+    // if (pageController.offset > screenSize * 4 &&
+    //     pageController.position.maxScrollExtent < screenSize * 5 &&
+    //     !pageController.position.outOfRange) {
     //   setState(() {
     //     currentScreen = 4;
     //   });
@@ -87,8 +90,9 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   changeValue() {
-    _controller.animateTo(screenSize * (currentScreen),
-        curve: Curves.linear, duration: const Duration(milliseconds: 500));
+    pageController.jumpToPage(currentScreen);
+    // pageController.animateTo(screenSize * (currentScreen),
+    //     curve: Curves.linear, duration: const Duration(milliseconds: 500));
     setState(() {});
   }
 
@@ -114,78 +118,104 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
             Container(
-              height: sizeData.height,
-              width: (sizeData.width > 900)
-                  ? sizeData.width - 300
-                  : sizeData.width,
-              // padding: const EdgeInsets.all(20.0),
-              child: ListView(
-                controller: _controller,
-                children: [
-                  // Container(
-                  //   height: sizeData.height,
-                  //   width: (sizeData.width > 900)
-                  //       ? sizeData.width - 300
-                  //       : sizeData.width,
-                  //   color: Colors.yellow,
-                  //   child: Center(
-                  //     child: SizedBox(
-                  //       width: 200,
-                  //       child: TextField(
-                  //         decoration:
-                  //             const InputDecoration(border: InputBorder.none),
-                  //         readOnly: true,
-                  //         controller: textEditingController,
-                  //         style: const TextStyle(
-                  //             decoration: TextDecoration.underline),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-
-                  Home(
-                    width: (sizeData.width > 900)
-                        ? sizeData.width - 300
-                        : sizeData.width,
-                    height: sizeData.height,
-                  ),
-                  Container(
-                      height: sizeData.height,
+                height: sizeData.height,
+                width: (sizeData.width > 900)
+                    ? sizeData.width - 300
+                    : sizeData.width,
+                // padding: const EdgeInsets.all(20.0),
+                child: PageView(
+                  scrollDirection: Axis.vertical,
+                  controller: pageController,
+                  children: [
+                    Home(
                       width: (sizeData.width > 900)
                           ? sizeData.width - 300
                           : sizeData.width,
-                      padding: const EdgeInsets.all(20),
-                      child: About(viewChanged: sizeData.width > 900)),
+                      height: sizeData.height,
+                    ),
+                    Container(
+                        height: sizeData.height,
+                        width: (sizeData.width > 900)
+                            ? sizeData.width - 300
+                            : sizeData.width,
+                        padding: const EdgeInsets.all(20),
+                        child: About(viewChanged: sizeData.width > 900)),
 
-                  Resume(
-                    width: (sizeData.width > 900)
-                        ? sizeData.width - 300
-                        : sizeData.width,
-                    height: sizeData.height,
-                  ),
-                  Portfolio(
-                    width: (sizeData.width > 900)
-                        ? sizeData.width - 300
-                        : sizeData.width,
-                    height: sizeData.height,
-                  ),
+                    Resume(
+                      width: (sizeData.width > 900)
+                          ? sizeData.width - 300
+                          : sizeData.width,
+                      height: sizeData.height,
+                    ),
+                    Portfolio(
+                      width: (sizeData.width > 900)
+                          ? sizeData.width - 300
+                          : sizeData.width,
+                      height: sizeData.height,
+                    ),
 
-                  Contact(
-                    width: (sizeData.width > 900)
-                        ? sizeData.width - 300
-                        : sizeData.width,
-                    height: sizeData.height,
-                  ),
+                    Contact(
+                      width: (sizeData.width > 900)
+                          ? sizeData.width - 300
+                          : sizeData.width,
+                      height: sizeData.height,
+                    ),
 
-                  // Container(
-                  //     height: sizeData.height,
-                  //     width: (sizeData.width > 900)
-                  //         ? sizeData.width - 300
-                  //         : sizeData.width,
-                  //     child: const Services()),
-                ],
-              ),
-            )
+                    // Container(
+                    //     height: sizeData.height,
+                    //     width: (sizeData.width > 900)
+                    //         ? sizeData.width - 300
+                    //         : sizeData.width,
+                    //     child: const Services()),
+                  ],
+                )
+                // ListView(
+                //   controller: pageController,
+                //   children: [
+                //     Home(
+                //       width: (sizeData.width > 900)
+                //           ? sizeData.width - 300
+                //           : sizeData.width,
+                //       height: sizeData.height,
+                //     ),
+                //     Container(
+                //         height: sizeData.height,
+                //         width: (sizeData.width > 900)
+                //             ? sizeData.width - 300
+                //             : sizeData.width,
+                //         padding: const EdgeInsets.all(20),
+                //         child: About(viewChanged: sizeData.width > 900)),
+
+                //     Resume(
+                //       width: (sizeData.width > 900)
+                //           ? sizeData.width - 300
+                //           : sizeData.width,
+                //       height: sizeData.height,
+                //     ),
+                //     Portfolio(
+                //       width: (sizeData.width > 900)
+                //           ? sizeData.width - 300
+                //           : sizeData.width,
+                //       height: sizeData.height,
+                //     ),
+
+                //     Contact(
+                //       width: (sizeData.width > 900)
+                //           ? sizeData.width - 300
+                //           : sizeData.width,
+                //       height: sizeData.height,
+                //     ),
+
+                //     // Container(
+                //     //     height: sizeData.height,
+                //     //     width: (sizeData.width > 900)
+                //     //         ? sizeData.width - 300
+                //     //         : sizeData.width,
+                //     //     child: const Services()),
+                //   ],
+                // ),
+
+                )
           ],
         ),
       ),
