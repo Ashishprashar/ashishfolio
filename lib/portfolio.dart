@@ -17,7 +17,7 @@ class Portfolio extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Contact",
+            "Projects",
             style: Theme.of(context).textTheme.headline4?.copyWith(
                 color: Theme.of(context).primaryColor,
                 fontWeight: FontWeight.bold),
