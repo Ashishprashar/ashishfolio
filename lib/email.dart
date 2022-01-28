@@ -47,7 +47,7 @@ class Contact extends StatelessWidget {
     return [
       Container(
         height: height * .7,
-        width: width < 900 ? width * .9 : width * .45,
+        width: width < 900 ? width * .9 : width * .5,
         decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
@@ -57,12 +57,12 @@ class Contact extends StatelessWidget {
             ],
             color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(20.0)),
-        padding: const EdgeInsets.all(20),
+        // padding: const EdgeInsets.all(20),
         margin: const EdgeInsets.all(20),
         child: Column(
           children: [
             buildInfo(context, Icons.location_on_outlined, "Location:",
-                "#10, 2nd floor, 5th main ,Raghuvanahalli,Banglore,India,560062"),
+                "#10, 2nd floor, 5th main\nRaghuvanahalli\nBanglore,India,560062"),
             buildInfo(context, Icons.email, "Email:", "ak2917065@gmail.com"),
             buildInfo(context, Icons.phone_android, "Call:", "+91 9653662159"),
           ],
@@ -79,7 +79,7 @@ class Contact extends StatelessWidget {
             color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(20.0)),
         height: height * .7,
-        width: width < 900 ? width * .9 : width * .45,
+        width: width < 900 ? width * .9 : width * .5,
         padding: const EdgeInsets.all(20),
         margin: const EdgeInsets.all(20),
         child: const FeedBack(),
@@ -92,7 +92,7 @@ class Contact extends StatelessWidget {
     return Container(
       height: height,
       width: width,
-      padding: const EdgeInsets.all(40),
+      padding: const EdgeInsets.all(10),
       child: SingleChildScrollView(
         scrollDirection: width > 900 ? Axis.horizontal : Axis.vertical,
         child: Column(

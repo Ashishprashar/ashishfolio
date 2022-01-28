@@ -237,7 +237,7 @@ class _ResumeState extends State<Resume> {
   List<Widget> resume() {
     return [
       Container(
-          width: widget.width * .5,
+          width: widget.width > 900 ? widget.width * .5 : widget.width * .9,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -249,7 +249,7 @@ class _ResumeState extends State<Resume> {
                     fontWeight: FontWeight.bold),
               ),
               buildEducation(context, "B.Engineering(CSE)", "2018 - 2022",
-                  "K.S School of Engineering\nand management \nBanglore"),
+                  "K.S School of Engineering and management \nBanglore"),
               buildEducation(context, "12th(Non-Med)", "2016 - 2018",
                   "G.S.S.S (Boys)\nDhanaula"),
               Text(
@@ -268,7 +268,7 @@ class _ResumeState extends State<Resume> {
             ],
           )),
       Container(
-          width: widget.width * .5,
+          width: widget.width > 900 ? widget.width * .5 : widget.width * .9,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
