@@ -43,68 +43,80 @@ class Contact extends StatelessWidget {
     );
   }
 
+  List<Widget> contact(context) {
+    return [
+      Container(
+        height: height * .7,
+        width: width < 900 ? width * .9 : width * .45,
+        decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                  blurRadius: 6,
+                  offset: const Offset(4, 4),
+                  color: Theme.of(context).hintColor),
+            ],
+            color: Theme.of(context).cardColor,
+            borderRadius: BorderRadius.circular(20.0)),
+        padding: const EdgeInsets.all(20),
+        margin: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            buildInfo(context, Icons.location_on_outlined, "Location:",
+                "#10, 2nd floor, 5th main ,Raghuvanahalli,Banglore,India,560062"),
+            buildInfo(context, Icons.email, "Email:", "ak2917065@gmail.com"),
+            buildInfo(context, Icons.phone_android, "Call:", "+91 9653662159"),
+          ],
+        ),
+      ),
+      Container(
+        decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                  blurRadius: 6,
+                  offset: const Offset(4, 4),
+                  color: Theme.of(context).hintColor),
+            ],
+            color: Theme.of(context).cardColor,
+            borderRadius: BorderRadius.circular(20.0)),
+        height: height * .7,
+        width: width < 900 ? width * .9 : width * .45,
+        padding: const EdgeInsets.all(20),
+        margin: const EdgeInsets.all(20),
+        child: const FeedBack(),
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: height,
       width: width,
       padding: const EdgeInsets.all(40),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Contact",
-            style: Theme.of(context).textTheme.headline4?.copyWith(
-                color: Theme.of(context).primaryColor,
-                fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(width: 70, child: Divider()),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                height: height * .7,
-                width: width * .45,
-                decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: 6,
-                          offset: const Offset(4, 4),
-                          color: Theme.of(context).hintColor),
-                    ],
-                    color: Theme.of(context).cardColor,
-                    borderRadius: BorderRadius.circular(20.0)),
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    buildInfo(context, Icons.location_on_outlined, "Location:",
-                        "#10, 2nd floor, 5th main ,Raghuvanahalli,Banglore,India,560062"),
-                    buildInfo(
-                        context, Icons.email, "Email:", "ak2917065@gmail.com"),
-                    buildInfo(context, Icons.phone_android, "Call:",
-                        "+91 9653662159"),
-                  ],
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: 6,
-                          offset: const Offset(4, 4),
-                          color: Theme.of(context).hintColor),
-                    ],
-                    color: Theme.of(context).cardColor,
-                    borderRadius: BorderRadius.circular(20.0)),
-                height: height * .7,
-                width: width * .45,
-                padding: const EdgeInsets.all(20),
-                child: const FeedBack(),
-              ),
-            ],
-          )
-        ],
+      child: SingleChildScrollView(
+        scrollDirection: width > 900 ? Axis.horizontal : Axis.vertical,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Contact",
+              style: Theme.of(context).textTheme.headline4?.copyWith(
+                  color: Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(width: 70, child: Divider()),
+            if (width > 900)
+              Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: contact(context))
+            else
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: contact(context))
+          ],
+        ),
       ),
     );
   }

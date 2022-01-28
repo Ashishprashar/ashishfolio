@@ -27,70 +27,23 @@ class _MainScreenState extends State<MainScreen> {
   @override
   initState() {
     pageController.addListener(listener);
-    // pageController = ScrollController();
-    // pageController.addListener(listener);
 
     perform();
     super.initState();
   }
 
-  perform() {
-    // if (currentScreen == 0) {
-    //   Timer.periodic(const Duration(milliseconds: 500), (timer) {
-    //     setState(() {
-    //       if (textEditingController.text.length < 8) {
-    //         textEditingController.text += "11";
-    //       } else {
-    //         textEditingController.text = "0";
-    //       }
-    //     });
-    //   });
-    // }
-  }
+  perform() {}
 
   listener() {
-    if (pageController.offset >= pageController.position.maxScrollExtent &&
-        !pageController.position.outOfRange) {
-      setState(() {
-        currentScreen = 4;
-      });
-    }
-    // print(pageController.offset);
-    else if (pageController.offset <= pageController.position.minScrollExtent &&
-        !pageController.position.outOfRange) {
-      setState(() {
-        currentScreen = 0;
-      });
-    } else if (pageController.offset > screenSize * 1 &&
-        pageController.offset < screenSize * 2 &&
-        !pageController.position.outOfRange) {
-      setState(() {
-        currentScreen = 1;
-      });
-    } else if (pageController.offset > screenSize * 2 &&
-        pageController.offset < screenSize * 3 &&
-        !pageController.position.outOfRange) {
-      setState(() {
-        currentScreen = 2;
-      });
-    } else if (pageController.offset > screenSize * 3 &&
-        pageController.offset < screenSize * 4 &&
-        !pageController.position.outOfRange) {
-      setState(() {
-        currentScreen = 3;
-      });
-    }
-    // if (pageController.offset > screenSize * 4 &&
-    //     pageController.position.maxScrollExtent < screenSize * 5 &&
-    //     !pageController.position.outOfRange) {
-    //   setState(() {
-    //     currentScreen = 4;
-    //   });
-    // }
+    setState(() {
+      currentScreen = pageController.page!.ceil();
+    });
   }
 
   changeValue() {
     pageController.jumpToPage(currentScreen);
+    // print();
+
     // pageController.animateTo(screenSize * (currentScreen),
     //     curve: Curves.linear, duration: const Duration(milliseconds: 500));
     setState(() {});
@@ -133,13 +86,15 @@ class _MainScreenState extends State<MainScreen> {
                           : sizeData.width,
                       height: sizeData.height,
                     ),
-                    Container(
-                        height: sizeData.height,
-                        width: (sizeData.width > 900)
-                            ? sizeData.width - 300
-                            : sizeData.width,
-                        padding: const EdgeInsets.all(20),
-                        child: About(viewChanged: sizeData.width > 900)),
+                    // Container(
+                    //     height: sizeData.height,
+                    //     width: (sizeData.width > 900)
+                    //         ? sizeData.width - 300
+                    //         : sizeData.width,
+                    //     padding: const EdgeInsets.all(20),
+                    //     child:
+                    About(viewChanged: sizeData.width > 900),
+                    // ),,
 
                     Resume(
                       width: (sizeData.width > 900)

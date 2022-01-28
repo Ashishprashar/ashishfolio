@@ -43,6 +43,7 @@ class _ResumeState extends State<Resume> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(title,
+                    maxLines: 2,
                     style: Theme.of(context)
                         .textTheme
                         .headline6
@@ -55,7 +56,11 @@ class _ResumeState extends State<Resume> {
                     child: Text(duration),
                   ),
                 ),
-                Text(institute)
+                Text(
+                  institute,
+                  softWrap: true,
+                  maxLines: 2,
+                )
               ],
             ),
           ),
@@ -229,83 +234,105 @@ class _ResumeState extends State<Resume> {
     );
   }
 
+  List<Widget> resume() {
+    return [
+      Container(
+          width: widget.width * .5,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "Education",
+                style: Theme.of(context).textTheme.headline5?.copyWith(
+                    // color: Theme.of(context).primaryColor,
+                    fontWeight: FontWeight.bold),
+              ),
+              buildEducation(context, "B.Engineering(CSE)", "2018 - 2022",
+                  "K.S School of Engineering\nand management \nBanglore"),
+              buildEducation(context, "12th(Non-Med)", "2016 - 2018",
+                  "G.S.S.S (Boys)\nDhanaula"),
+              Text(
+                "Skills",
+                style: Theme.of(context).textTheme.headline5?.copyWith(
+                    // color: Theme.of(context).primaryColor,
+                    fontWeight: FontWeight.bold),
+              ),
+              buildSkills(context, "Flutter", 1),
+              buildSkills(context, "Android", .8),
+              buildSkills(context, "Python", .7),
+              buildSkills(context, "Firebase", .9),
+              buildSkills(context, "NoSQL", .75),
+              buildSkills(context, "Git", .7),
+              buildSkills(context, "MongoDB", .7),
+            ],
+          )),
+      Container(
+          width: widget.width * .5,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Professional Experience",
+                style: Theme.of(context).textTheme.headline5?.copyWith(
+                    // color: Theme.of(context).primaryColor,
+                    fontWeight: FontWeight.bold),
+              ),
+              buildExperience(context, "Flutter Developer Intern",
+                  "Aug/2021 - Nov/2021 ", "SoftEZi Solutions LLP\n(Remote)", [
+                "Worked on android application projects with flutter framework.",
+                "Handle backend for the applications (Firebase, Mongodb)",
+                "Built api’s in Node.js"
+              ]),
+              buildExperience(context, "Flutter Developer Intern",
+                  "NovAug/2021 - Present ", "Trainer Goes Online\n(Remote)", [
+                "Worked on a hybrid application named Trainer Goes Online..",
+                "Integrated Google Fit and SendGrid Api in app",
+                "Implemented Cloud functions for Notifications and Remote Config"
+              ]),
+              Text(
+                "Languages",
+                style: Theme.of(context).textTheme.headline5?.copyWith(
+                    // color: Theme.of(context).primaryColor,
+                    fontWeight: FontWeight.bold),
+              ),
+              buildLanguages(context, ["English", "Hindi", "Punjabi"])
+            ],
+          ))
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: widget.height,
-        width: widget.width,
-        padding: const EdgeInsets.all(20),
-        child: Row(
-          // mainAxisAlignment: MainAxisAlignment.center,
+      height: widget.height,
+      width: widget.width,
+      padding: const EdgeInsets.all(20.0),
+      child: SingleChildScrollView(
+        scrollDirection: widget.width > 900 ? Axis.horizontal : Axis.vertical,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-                child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  "Resume",
-                  style: Theme.of(context).textTheme.headline4?.copyWith(
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  "Education",
-                  style: Theme.of(context).textTheme.headline5?.copyWith(
-                      // color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                buildEducation(context, "B.Engineering(CSE)", "2018 - 2022",
-                    "K.S School of Engineering and management \nBanglore"),
-                buildEducation(context, "12th(Non-Med)", "2016 - 2018",
-                    "G.S.S.S (Boys)\nDhanaula"),
-                Text(
-                  "Skills",
-                  style: Theme.of(context).textTheme.headline5?.copyWith(
-                      // color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                buildSkills(context, "Flutter", 1),
-                buildSkills(context, "Android", .8),
-                buildSkills(context, "Python", .7),
-                buildSkills(context, "Firebase", .9),
-                buildSkills(context, "NoSQL", .75),
-                buildSkills(context, "Git", .7),
-                buildSkills(context, "MongoDB", .7),
-              ],
-            )),
-            Expanded(
-                child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Professional Experience",
-                  style: Theme.of(context).textTheme.headline5?.copyWith(
-                      // color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                buildExperience(context, "Flutter Developer Intern",
-                    "Aug/2021 - Nov/2021 ", "SoftEZi Solutions LLP\n(Remote)", [
-                  "Worked on android application projects with flutter framework.",
-                  "Handle backend for the applications (Firebase, Mongodb)",
-                  "Built api’s in Node.js"
-                ]),
-                buildExperience(context, "Flutter Developer Intern",
-                    "NovAug/2021 - Present ", "Trainer Goes Online\n(Remote)", [
-                  "Worked on a hybrid application named Trainer Goes Online..",
-                  "Integrated Google Fit and SendGrid Api in app",
-                  "Implemented Cloud functions for Notifications and Remote Config"
-                ]),
-                Text(
-                  "Languages",
-                  style: Theme.of(context).textTheme.headline5?.copyWith(
-                      // color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                buildLanguages(context, ["English", "Hindi", "Punjabi"])
-              ],
-            ))
+            Text(
+              "Resume",
+              style: Theme.of(context).textTheme.headline4?.copyWith(
+                  color: Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(width: 70, child: Divider()),
+            if (widget.width > 900)
+              Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: resume())
+            else
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: resume())
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
